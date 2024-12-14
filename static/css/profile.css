@@ -1,0 +1,219 @@
+:root{
+    --Sniglet: "Sniglet", cursive;
+    --Poppins: "Poppins", cursive;
+    --Patua: "Patua One", cursive;
+    --Inter: "Inter", cursive;
+    --light-black: #26282C;
+    --light-gray: #a6a8a8;
+    --bggradient: linear-gradient(315deg, #2d3436 0%, #151618 74%);
+    --gradient2:  linear-gradient(0deg, #28a0af 0%, #2657a1 74%);
+}
+
+
+
+.profile1 {
+    font-family: Poppins, sans-serif;
+}
+
+.leftside {
+	padding-bottom: 200px;
+}
+.profile-image{
+	padding: 10px;
+	border-radius: 30px;
+	margin-right: 40px;
+	width: 200px;
+}
+.name{
+	font-size: 20px;
+	font-weight: bold;
+	color: #272727;
+	position: relative;
+	top: 8px;
+}
+.mail{
+	font-size: 14px;
+	color: grey;
+	position: relative;
+	top: 2px;
+}
+.middle-prof{
+	background-color: #eee;
+	border-radius: 12px;
+	width: 300px;
+    margin-bottom: 20px;
+}
+.middle-prof:hover {
+	border: 1px solid #38DEC8;
+}
+
+.budget {
+	margin-left: 15px;
+}
+
+.dollar-div{
+	background-color: #38DEC8;
+	border-radius: 10px;
+    font-family: Poppins, sans-serif;
+}
+
+.dollar-div{
+	background-color: #38DEC8;
+	padding: 12px;
+	border-radius: 10px;
+}
+.round-div{
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.dollar{
+	font-size: 16px !important;
+	color: #38DEC8 !important;
+	font-weight: bold !important;
+}
+.current-balance {
+    font-size: 16px;
+    font-weight: bold;
+}
+.amount{
+	margin-top:20px;
+	color: #2eb7a5;
+	font-weight: bold;
+}
+
+#profit {
+	margin-top:20px;
+	font-weight: bold;
+}
+.dollar-sign{
+	font-size: 16px;
+	color: #272727;
+	font-weight: bold;
+}
+
+.botcards{
+	font-size: 17px;
+	font-weight: 700;
+	color: #272727;
+
+}
+.borders:hover{
+    border-bottom: 1px solid #38DEC8;
+}
+
+.rightside{
+    background-color: #2d3436;
+	width: 300px;
+	box-shadow: 7.0px 13.9px 13.9px hsl(0deg 0% 0% / 0.28);
+    border-radius: 25px;
+	padding-bottom: 100px ;
+	margin: 50px;
+	justify-content: center;
+	align-items: center;
+}
+
+.rightside h2 {
+	color: #ffffff;
+	font-weight: bold;
+	margin: 10px;
+}
+
+.main-wallet {
+
+	  width:500px;
+	  display:block;
+	  background-color: #eee;
+	  box-shadow: 7.0px 13.9px 13.9px hsl(0deg 0% 0% / 0.28);
+	  border-radius: 25px;
+}
+
+.amount_wallet {
+	font-size: 30px;
+	color: #2eb7a5;
+	font-weight: bold;
+}
+
+.rightside .money {
+	margin: 50px;
+	height: 400px;
+	width: 700px;
+}
+
+.rightside .business {
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+.business .bus-buttons {
+	margin-top: 50px;
+}
+
+.business .drop-list {
+	margin-top: 20px;
+	color: #2eb7a5;
+	font-weight: bold;
+}
+.button-bus {
+  background: #239889;
+  border-radius: 999px;
+  margin: 20px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 8px 18px;
+  border: 0;
+}
+
+.rightside #divhis {
+    display: none;
+	margin-top: 30px;
+}
+
+.rightside .history-table {
+	height: 500px;
+	width: 700px;
+}
+
+.history-table thead {
+    border-radius: 3px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+
+.history-table .table tr:hover {
+	color: #eeeeee;
+
+}
+
+.card_right ::-webkit-scrollbar {
+	width: 20px;
+}
+
+.card_right ::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 2px grey;
+	border-radius: 10px;
+  	background: #f1f1f1;
+}
+
+.card_right ::-webkit-scrollbar-thumb {
+  	background: #2fb9a7;
+	border-radius: 10px;
+}
+
+.card_right ::-webkit-scrollbar-thumb:hover {
+	background: #1f8578;
+}
+
+.rightside .history-table table {
+	color: whitesmoke;
+	width: 600px;
+	padding: 30px;
+}
