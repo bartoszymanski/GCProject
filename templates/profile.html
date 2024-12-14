@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% block links %}
+    <link rel="stylesheet" href="../static/css/profile.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css'>
+{% endblock %}
+
+{% block navbar %}
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('home_page') }}">HOME</a>
+    </li>
+     <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('graphs_page') }}">GRAPHS</a>
+     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('table_page') }}">RATES TABLE</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('profile_page')}}">PROFILE
+           <i class="fa-solid fa-user"></i>
+      </a>
+    </li>
+{% endblock %}
+
+{% block header %}
+    <div class="title_cover">
+        <div class="title_text text-center">
+            <h1>Your Profile</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="profile1 row container-fluid">
+            <div  class="container leftside d-flex justify-content-center mt-5 col-md-2">
+                <div class="top-prof">
+                    <div class="prof-div">
+                        <img src="../static/img/profile-picture.jpg" class="img-fluid profile-image">
+                    </div>
+                    <div class="ml-3">
+                        <h5 class="name">{{current_user.username}}</h5>
+                        <p class="mail">{{current_user.email_address}}</p>
+                    </div>
+
+
+                    <div class="middle-prof d-flex justify-content-between align-items-center mt-3 p-2">
+                        <div class="dollar-div px-3">
+					        <div class="round-div"><i class="fa fa-dollar dollar"></i></div>
+				        </div>
+				        <div class="budget d-flex flex-column text-right mr-2">
+                            <span class="current-balance">Current Balance</span>
+                            <div class="row text-right">
+                                <div class=" budget d-flex mr-2">
+                                <span class="amount"><span class="dollar-sign">PLN </span>{{ balance }}</span>
+                                </div>
+                                <div class="d-flex">
+                                <span id="profit">32.0% <i class="fa-solid fa-caret-up"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div onclick="replaceWal()" class="borders pt-2">
+                        <span class="botcards">Wallet</span>
+                    </div>
+                    <div onclick="replaceHis()" class="borders pt-2">
+                        <span class="botcards">Purchase History</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rightside container d-flex justify-content-center mt-5 col-md-7">
+                <div id="divwal" class="card_right">
+                    <h2 class="text-center">Wallet</h2>
+
+                        <div class="main-wallet text-center">
+                            <div class="slider slider-top d-flex lex-wrap justify-content-center">
+                            </div>
+                            <div class="slider slider-bottom d-flex lex-wrap justify-content-center">
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-md-row flex-wrap business text-center">
+                            <div class="row  justify-content-between">
+                                <div class="col-md-6 col-12">
+                                    <label class="amount">Amount
+                                        <input type="text" id="message-input" value="1">
+                                    </label>
+                                        <div class="panel">
+                                            <form action="#">
+                                                <div class="drop-list row">
+                                                      <div class="from col-md-6">
+                                                        <p>From</p>
+                                                        <div class="select-box">
+                                                          <span class="fi fi-us"></span>
+                                                          <select id="UserSelect_1"></select>
+                                                        </div>
+                                                      </div>
+                                                      <div class="to col-md-6">
+                                                        <p>To</p>
+                                                        <div class="select-box">
+                                                          <span class="fi fi-pl"></span>
+                                                          <select id="UserSelect_2"></select>
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                </div>
+                                <div class="bus-buttons col-md-6 col-12">
+                                    <button class="button-bus" role="button">
+                                        Sell
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </button><br>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div id="divhis" class="card_right">
+                    <h2>History</h2>
+                    <div class="history-table text-center" style="overflow-y: scroll">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class="fa-solid fa-clock-rotate-left"></i></th>
+                                    <th>Currency</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelka">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="../static/js/country-list.js"></script>
+<script>
+
+    const topSliderTxt = document.querySelector(".slider-top");
+    const botSliderTxt = document.querySelector(".slider-bottom");
+
+    if (topSliderTxt !== "" && botSliderTxt !== ""){
+                topSliderTxt.innerHTML = "";
+                botSliderTxt.innerHTML = ""
+    }
+    currency_dict = {{ dict_wal | tojson }}
+    for(let code in currency_dict) {
+        let rect = `<div class="currency_rect">
+                        <h3>${code} <span class="fi fi-${country_list[code]}"></span></h3>
+                        <span class="amount_wallet">${currency_dict[code]}</span>
+                    </div>`
+
+        topSliderTxt.insertAdjacentHTML("beforeend", rect);
+        botSliderTxt.insertAdjacentHTML("beforeend", rect);
+    }
+
+
+</script>
+
+<script>
+
+    const tab = document.querySelector("#tabelka");
+    currency_hist = {{ hist | tojson }}
+     for (const [key, value] of Object.entries(
+                currency_hist
+            )) {
+        let rect_1 = `<tr class="table-row">
+                        <td>${value['date']}</td>
+                        <td>${value['code']} <span class="fi fi-${country_list[value['code']]}""></span></td>
+                        <td>${value['amount']}</td>
+                    </tr>`;
+
+        tab.insertAdjacentHTML("beforeend", rect_1);
+    }
+
+
+</script>
+
+<script>
+
+    const profitTxt = document.querySelector("#profit");
+    const profile = document.querySelector(".prof-div");
+    percentData = {{profit | tojson}}
+    if(percentData > 0.0){
+        profitTxt.innerHTML = `${percentData}% <i class="fa-solid fa-caret-up"></i>`;
+        profitTxt.style.color = "green";
+        profile.innerHTML = `<img src="../static/img/stonks.png" class="img-fluid profile-image">`
+    }
+    else if(percentData < 0.0){
+        profitTxt.innerHTML = `${percentData}% <i class="fa-solid fa-caret-down"></i>`;
+        profitTxt.style.color = "red";
+        profile.innerHTML = `<img src="../static/img/not_stonks.png" class="img-fluid profile-image">`
+    }
+    else {
+        profitTxt.innerHTML = `${percentData}% <i class="fa-solid fa-minus"></i>`;
+        profitTxt.style.color = "grey";
+        profile.innerHTML = `<img src="../static/img/mid.png" class="img-fluid profile-image">`
+    }
+
+
+</script>
+
+<script src="../static/js/profile.js"></script>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block links %}
+    <link rel="stylesheet" href="../static/css/table.css">
+{% endblock %}
+
+{% block navbar %}
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('home_page') }}">HOME</a>
+    </li>
+     <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('graphs_page') }}">GRAPHS</a>
+     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('table_page') }}">RATES TABLE
+          <i class="fa-solid fa-list"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('profile_page')}}">PROFILE</a>
+    </li>
+{% endblock %}
+
+{% block header %}
+    <div class="title_cover">
+        <div class="title_text text-center">
+            <h1>Rate Tables</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="top-rates text-center justify-content-center">
+            <div class="currency container d-flex flex-column">
+                <div class="select-box">
+                  <span class="fi fi-pl"></span>
+                  <select></select>
+                  <button class="load-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="date-title text-right">
+                    <h5 type="time">{{today}}</h5>
+                </div>
+            </div>
+
+        </div>
+        <div class="rates container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>CURRENCY</th>
+                        <th class="second-col">1.00 PLN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p class="source">Source: European Central Bank</p>
+        </div>
+    </main>
+{% endblock%}
+
+{% block scripts %}
+<script src="../static/js/country-list.js"></script>
+<script src="../static/js/table.js"></script>
+{% endblock %}

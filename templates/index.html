@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block links %}
+    <link rel="stylesheet" href="../static/css/graphs.css">
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+{% endblock %}
+
+{% block navbar %}
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('home_page') }}">HOME
+            <i class="fa-solid fa-house"></i>
+        </a>
+    </li>
+     <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('graphs_page') }}">GRAPHS</a>
+     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('table_page') }}">RATES TABLE</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('profile_page')}}">PROFILE</a>
+    </li>
+{% endblock %}
+
+{% block header %}
+     <div class="container text-center">
+          <div class="row">
+            <div class="col-md-7 col-sm-12  text-white">
+              <h6>CURRENCY EXCHANGE</h6>
+              <h1>WELCOME TO ZIELONE CHECK</h1>
+              <p>
+                A site that allows you to check everything about currencies around the world &#127757;
+              </p>
+
+            </div>
+            <div class="col-md-5 col-sm-12  h-25">
+              <img src="../static/img/moneyheader.png" alt="money" />
+            </div>
+          </div>
+     </div>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="section1">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="panel flex-md-row flex-wrap text-center justify-content-center">
+                            <h1>Currency Converter</h1>
+                            <form action="#">
+                                <div class="amount">
+                                  <p>Enter Amount</p>
+                                  <input type="text" value="1">
+                                </div>
+                                <div class="drop-list">
+                                  <div class="from">
+                                    <p>From</p>
+                                    <div class="select-box">
+                                      <span class="fi fi-us"></span>
+                                      <select></select>
+                                    </div>
+                                  </div>
+                                  <div><button class="exchange"><i class="fas fa-exchange-alt"></i></button></div>
+                                  <div class="to">
+                                    <p>To</p>
+                                    <div class="select-box">
+                                      <span class="fi fi-pl"></span>
+                                      <select></select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <button class="btn-index">Get Exchange Rate</button>
+                              </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="showcase">
+                            <h2 class="exchange-title">GBP <span class="fi fi-gb"></span>
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                USD <span class="fi fi-us"></span>
+                            </h2>
+                            <p class="from-rate">1.00 GBP =</p>
+                            <h3 class="exchange-rate">0.00 USD</h3>
+                            <p type="time" class="text-right">{{today}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section2 container-fluid p-0">
+            <div class="cover">
+                <div class="back"></div>
+                <div class="content text-center">
+                    <h1>Popular Exchange Rates</h1>
+                    <p>Check live changes of most popular currencies</p>
+                </div>
+            </div>
+            <div class="container-fluid text-center">
+                <div class="d-flex lex-wrap justify-content-center">
+                    <div class="currency_rect">
+                        <h3>USD <span class="fi fi-us"></span></h3>
+                        <h4>{{ usd }} PLN</h4>
+                    </div>
+                    <div class="currency_rect">
+                        <h3>GBP <span class="fi fi-gb"></span></h3>
+                        <h4>{{ funt }} PLN</h4>
+                    </div>
+                    <div class="currency_rect">
+                        <h3>EUR <span class="fi fi-eu"></span></h3>
+                        <h4>{{ eur }} PLN</h4>
+                    </div>
+                      <div class="currency_rect">
+                        <h3>CAD <span class="fi fi-ca"></span></h3>
+                          <h4>{{ cad }} PLN</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section3 container-fluid p-0 text-center">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h1>Graphs</h1>
+                    <p>Review market history and analyze rate trends</p>
+                </div>
+            </div>
+            <div id="chartdiv_index"><test/></div>
+        </section>
+
+    </main>
+{% endblock %}
+
+{% block scripts %}
+<script src="../static/js/country-list.js"></script>
+<script src="../static/js/home.js"></script>
+{% endblock %}
